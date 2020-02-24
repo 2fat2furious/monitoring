@@ -2,13 +2,34 @@
 
 <?import java.lang.*?>
 <?import java.util.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sample.controllers.KinderGartenController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="524.0" prefWidth="958.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.controllers.KinderGartenController">
+  <TableView fx:id="gartensTable" layoutX="278.0" layoutY="0.0" prefHeight="524.0" prefWidth="680.0">
+    <columns>
+      <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="153.0" text="Краткое название" fx:id="shortTitleColumn" />
+      <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="142.0" text="Полное название" fx:id="fullTitleColumn" />
+      <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="180.0" text="Адрес" fx:id="addressColumn" />
+      <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="82.0" text="Телефон" fx:id="phoneColumn" />
+      <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="124.0" text="Директриса" fx:id="fioManageressColumn" />
+    </columns>
+  </TableView>
+  <VBox layoutX="0.0" layoutY="1.0" prefHeight="523.0" prefWidth="278.0" spacing="10.0">
+    <children>
+      <TextField fx:id="shortTitle" prefWidth="200.0" promptText="Краткое название" text="" />
+      <TextField fx:id="fullTitle" prefWidth="200.0" promptText="Полное название" />
+      <TextField fx:id="address" prefWidth="200.0" promptText="Адрес" />
+      <TextField fx:id="phone" prefWidth="200.0" promptText="Телефон" />
+      <TextField fx:id="fioManageress" prefWidth="200.0" promptText="Директриса" />
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleSave" prefWidth="238.0" text="Сохранить" />
+      <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#handleRemove" prefWidth="238.0" text="Удалить" />
+      <Button mnemonicParsing="false" prefWidth="238.0" text="Редактировать" onAction="#handleEdit" />
+    </children>
+    <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+  </VBox>
 </AnchorPane>

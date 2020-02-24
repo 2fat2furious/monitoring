@@ -81,12 +81,12 @@ public class KinderGartenDAO {
     public void update(KinderGarten kinderGarten) {
         try (Connection connection = JDBCConnection.getConnection()) {
             PreparedStatement ps = connection.prepareStatement("UPDATE kinder_garten SET short_title = ?, full_title = ?, address = ?, phone = ?, fio_manageress = ? Where id_kinder_garten = ?");
-            ps.setString(1, kinderGarten.getShort_title());
-            ps.setString(2, kinderGarten.getFull_title());
+            ps.setString(1, kinderGarten.getShortTitle());
+            ps.setString(2, kinderGarten.getFullTitle());
             ps.setString(3, kinderGarten.getAddress());
             ps.setString(4, kinderGarten.getPhone());
-            ps.setString(5, kinderGarten.getFio_head());
-            ps.setLong(6, kinderGarten.getId_kindergarten());
+            ps.setString(5, kinderGarten.getFioManageress());
+            ps.setLong(6, kinderGarten.getIdKindergarten());
             ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();
