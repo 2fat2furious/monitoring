@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="380.0" prefWidth="464.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.controllers.KinderGartenDialogController">
+  <children>
+    <GridPane layoutX="24.0" layoutY="63.0" prefHeight="220.0" prefWidth="416.0">
+      <children>
+        <Label prefWidth="150.0" text="Короткое название" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label prefWidth="136.0" text="Полное название" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Label prefWidth="122.0" text="Адрес" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Label text="Телефон" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <Label text="ФИО руководителя" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <TextField id="fioField" fx:id="shortTitleField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <TextField fx:id="fullTitleField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <TextField fx:id="addressField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <TextField id="fioField" fx:id="phoneField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <TextField fx:id="fioField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="10.0" prefWidth="114.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="219.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="44.0" minHeight="0.0" prefHeight="39.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="46.0" minHeight="0.0" prefHeight="46.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="49.0" minHeight="0.0" prefHeight="42.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="90.0" minHeight="0.0" prefHeight="44.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="90.0" minHeight="0.0" prefHeight="49.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+    <Label layoutX="197.0" layoutY="20.0" text="Label" />
+    <Button layoutX="215.0" layoutY="323.0" mnemonicParsing="false" onAction="#handleOk" text="Сохранить" />
+    <Button layoutX="329.0" layoutY="323.0" mnemonicParsing="false" onAction="#handleCancel" prefWidth="99.0" text="Назад" />
+  </children>
+</AnchorPane>

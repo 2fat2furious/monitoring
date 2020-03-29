@@ -4,28 +4,32 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class KinderGarten {
-    private long idKindergarten;
+    private long idKinderGarten;
     private StringProperty shortTitle = new SimpleStringProperty();
     private StringProperty fullTitle = new SimpleStringProperty();
     private StringProperty address = new SimpleStringProperty();
     private StringProperty phone = new SimpleStringProperty();
-    private StringProperty fioManageress = new SimpleStringProperty();
+    private StringProperty fio = new SimpleStringProperty();
 
-    public KinderGarten(long idKindergarten, String shortTitle, String fullTitle, String address, String phone, String fioManageress) {
-        this.idKindergarten = idKindergarten;
+
+    public KinderGarten(long idKinderGarten, String shortTitle, String fullTitle, String address, String phone, String fio) {
+        this.idKinderGarten = idKinderGarten;
         this.shortTitle.set(shortTitle);
         this.fullTitle.set(fullTitle);
         this.address.set(address);
         this.phone.set(phone);
-        this.fioManageress.set(fioManageress);
+        this.fio.set(fio);
     }
 
-    public long getIdKindergarten() {
-        return idKindergarten;
+    public KinderGarten() {
     }
 
-    public void setIdKindergarten(long idKindergarten) {
-        this.idKindergarten = idKindergarten;
+    public long getIdKinderGarten() {
+        return idKinderGarten;
+    }
+
+    public void setIdKinderGarten(long idKinderGarten) {
+        this.idKinderGarten = idKinderGarten;
     }
 
     public String getShortTitle() {
@@ -76,16 +80,16 @@ public class KinderGarten {
         this.phone.set(phone);
     }
 
-    public String getFioManageress() {
-        return fioManageress.get();
+    public String getFio() {
+        return fio.get();
     }
 
-    public StringProperty fioManageressProperty() {
-        return fioManageress;
+    public StringProperty fioProperty() {
+        return fio;
     }
 
-    public void setFioManageress(String fioManageress) {
-        this.fioManageress.set(fioManageress);
+    public void setFio(String fio) {
+        this.fio.set(fio);
     }
 }
 

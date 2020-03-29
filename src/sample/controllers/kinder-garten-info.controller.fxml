@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="561.0" prefWidth="1036.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.controllers.KinderGartenInfoController">
+  <children>
+    <TabPane layoutX="0.0" layoutY="0.0" prefHeight="561.0" prefWidth="1036.0" tabClosingPolicy="UNAVAILABLE">
+      <tabs>
+        <Tab closable="false" text="Общие сведения">
+          <content>
+            <fx:include fx:id="kinderGarten" source="kindergarten.fxml" />
+          </content>
+        </Tab>
+        <Tab fx:id="educatorTab" closable="false" text="Воспитатели">
+          <content>
+            <fx:include fx:id="educator" source="educator.controller.fxml" />
+          </content>
+        </Tab>
+        <Tab fx:id="groupTypeTab" text="Виды групп">
+          <content>
+            <fx:include fx:id="groupType" source="group-type.controller.fxml" />
+          </content>
+        </Tab>
+      </tabs>
+    </TabPane>
+  </children>
+</AnchorPane>

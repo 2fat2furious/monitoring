@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="524.0" prefWidth="958.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.controllers.GroupTypeController">
+  <TableView id="gartensTable" fx:id="groupTypesTable" layoutX="278.0" prefHeight="431.0" prefWidth="680.0" AnchorPane.topAnchor="54.0">
+    <columns>
+      <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="224.0" text="Тип группы" fx:id="groupTypeColumn" />
+      <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="247.0" text="Начальный возраст" fx:id="startAgeColumn" />
+      <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="207.0" text="Конечный возраст" fx:id="endAgeColumn" />
+    </columns>
+  </TableView>
+  <VBox layoutX="0.0" prefHeight="470.0" prefWidth="278.0" spacing="10.0" AnchorPane.topAnchor="34.0">
+    <children>
+      <TextField id="shortTitle" fx:id="groupType" prefWidth="200.0" promptText="Тип группы" text="" />
+      <TextField id="fullTitle" fx:id="startAge" prefWidth="200.0" promptText="Начальный возраст" />
+      <TextField id="address" fx:id="endAge" prefWidth="200.0" promptText="Конечный возраст" />
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleSave" prefWidth="238.0" text="Сохранить" />
+      <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#handleRemove" prefWidth="238.0" text="Удалить" />
+      <Button mnemonicParsing="false" onAction="#handleEdit" prefWidth="238.0" text="Редактировать" />
+    </children>
+    <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+  </VBox>
+</AnchorPane>

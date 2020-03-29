@@ -1,93 +1,123 @@
 package sample.controllers;
 
-import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
-import javafx.beans.binding.When;
+import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import sample.data.KinderGarten;
-import sample.data.KinderGartenService;
+import sample.service.KinderGartenService;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
-public class KinderGartenController {
+public class KinderGartenController extends AbstractGartenInfoController {
     @FXML
     private TableView gartensTable;
     @FXML
     private TableColumn<KinderGarten, String> shortTitleColumn;
     @FXML
-    private TableColumn<KinderGarten, String> fullTitleColumn;
+    private Label shortTitleLabel;
     @FXML
-    private TableColumn<KinderGarten, String> addressColumn;
+    private Label fullTitleLabel;
     @FXML
-    private TableColumn<KinderGarten, String> phoneColumn;
+    private Label addressLabel;
     @FXML
-    private TableColumn<KinderGarten, String> fioManageressColumn;
+    private Label phoneLabel;
+    @FXML
+    private Label fioLabel;
+    @FXML
+    private GridPane detailsPanel;
 
-    @FXML
-    private TextField shortTitle;
-    @FXML
-    private TextField fullTitle;
-    @FXML
-    private TextField address;
-    @FXML
-    private TextField phone;
-    @FXML
-    private TextField fioManageress;
+    //    @FXML
+//    private TextField shortTitle;
+//    @FXML
+//    private TextField fullTitle;
+//    @FXML
+//    private TextField address;
+//    @FXML
+//    private TextField phone;
+//    @FXML
+//    private TextField fio;
     @FXML
     private Button deleteButton;
+    @FXML
+    private Button editingButton;
 
     KinderGartenService service = new KinderGartenService();
-    public boolean editing = false;
-
 
     @FXML
     void initialize() throws SQLException {
         shortTitleColumn.setCellValueFactory(cell -> cell.getValue().shortTitleProperty());
-        fullTitleColumn.setCellValueFactory(cell -> cell.getValue().fullTitleProperty());
-        addressColumn.setCellValueFactory(cell -> cell.getValue().addressProperty());
-        phoneColumn.setCellValueFactory(cell -> cell.getValue().phoneProperty());
-        fioManageressColumn.setCellValueFactory(cell -> cell.getValue().fioManageressProperty());
+//        fullTitleLabel.setCellValueFactory(cell -> cell.getValue().fullTitleProperty());
+//        addressColumn.setCellValueFactory(cell -> cell.getValue().addressProperty());
+//        phoneColumn.setCellValueFactory(cell -> cell.getValue().phoneProperty());
+//        fioColumn.setCellValueFactory(cell -> cell.getValue().fioProperty());
         gartensTable.setItems(service.getAll());
-        gartensTable.setOnMouseClicked(e -> {
-            if (this.editing) {
-                this.editing = false;
-                shortTitle.setText("");
-                fullTitle.setText("");
-                address.setText("");
-                phone.setText("");
-                fioManageress.setText("");
 
+        BooleanBinding modelIsSelected = gartensTable.getSelectionModel().selectedItemProperty().isNull();
+        deleteButton.disableProperty().bind(modelIsSelected);
+        editingButton.disableProperty().bind(modelIsSelected);
+        detailsPanel.visibleProperty().bind(gartensTable.getSelectionModel().selectedItemProperty().isNotNull());
+
+        gartensTable.getSelectionModel().selectedItemProperty().addListener((obs, oldV, newV) -> {
+
+            if (newV != null) {
+                KinderGarten kg = (KinderGarten) newV;
+
+                fullTitleLabel.setText(kg.getFullTitle());
+                shortTitleLabel.setText(kg.getShortTitle());
+                addressLabel.setText(kg.getAddress());
+                phoneLabel.setText(kg.getPhone());
+                // fioLabel.setText(kg.getFio());
             }
         });
+
+        gartensTable.getSelectionModel().selectFirst();
+    }
+
+    public boolean showKinderGartenEditDialog(KinderGarten kinderGarten) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(KinderGartenController.class.getResource("kinder-garten-edit-dialog.controller.fxml"));
+            AnchorPane page = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Добавление детского сада");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+//            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            KinderGartenDialogController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setKinderGarten(kinderGarten);
+
+            dialogStage.showAndWait();
+
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @FXML
-    void handleSave() throws SQLException {
-        if (!this.editing) {
-            service.add(
-                    shortTitle.getText(),
-                    fullTitle.getText(),
-                    address.getText(),
-                    phone.getText(),
-                    fioManageress.getText()
-            );
-
-            shortTitle.setText("");
-            fullTitle.setText("");
-            address.setText("");
-            phone.setText("");
-            fioManageress.setText("");
-        } else {
-            KinderGarten kg = (KinderGarten) gartensTable.getSelectionModel().getSelectedItem();
-
-            service.update(new KinderGarten(kg.getIdKindergarten(), shortTitle.getText(), fullTitle.getText(), address.getText(), phone.getText(), fioManageress.getText()));
+    private void handleNewKinderGarten() {
+        KinderGarten tempKinderGarten = new KinderGarten();
+        boolean okClicked = showKinderGartenEditDialog(tempKinderGarten);
+        if (okClicked) {
+            service.add(tempKinderGarten.getShortTitle(),
+                    tempKinderGarten.getFullTitle(),
+                    tempKinderGarten.getAddress(),
+                    tempKinderGarten.getPhone());
+            loadData();
         }
-
-        gartensTable.setItems(service.getAll());
     }
 
     @FXML
@@ -95,21 +125,52 @@ public class KinderGartenController {
         int index = gartensTable.getSelectionModel().getSelectedIndex();
         if (index >= 0) {
             KinderGarten kg = (KinderGarten) gartensTable.getSelectionModel().getSelectedItem();
-            service.delete(Long.toString(kg.getIdKindergarten()));
+            service.delete(Long.toString(kg.getIdKinderGarten()));
             gartensTable.getItems().remove(kg);
         }
     }
 
-    public void handleEdit() {
-        int index = gartensTable.getSelectionModel().getSelectedIndex();
-        if (index >= 0) {
-            editing = true;
-            KinderGarten kg = (KinderGarten) gartensTable.getSelectionModel().getSelectedItem();
-            shortTitle.setText(kg.getShortTitle());
-            fullTitle.setText(kg.getFullTitle());
-            address.setText(kg.getAddress());
-            phone.setText(kg.getPhone());
-            fioManageress.setText(kg.getFioManageress());
+    @FXML
+    private void handleEditKinderGarten() {
+        KinderGarten kinderGarten = (KinderGarten) gartensTable.getSelectionModel().getSelectedItem();
+        if (kinderGarten != null) {
+            boolean okClicked = showKinderGartenEditDialog(kinderGarten);
+            if (okClicked) {
+                showKinderGartenDetails(kinderGarten);
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+//            alert.initOwner();
+            alert.setTitle("Ничего не выбрано");
+            alert.setHeaderText("Не выбран детский сад");
+            alert.setContentText("Пожалуйста, выберите детский сад из таблицы!");
+            alert.showAndWait();
         }
+    }
+
+
+    private void showKinderGartenDetails(KinderGarten kinderGarten) {
+        if (kinderGarten != null) {
+            shortTitleLabel.setText(kinderGarten.getShortTitle());
+            fullTitleLabel.setText(kinderGarten.getFullTitle());
+            addressLabel.setText(kinderGarten.getAddress());
+            phoneLabel.setText(kinderGarten.getPhone());
+            fioLabel.setText(kinderGarten.getFio());
+        } else {
+            shortTitleLabel.setText("");
+            fullTitleLabel.setText("");
+            addressLabel.setText("");
+            phoneLabel.setText("");
+            fioLabel.setText("");
+        }
+    }
+
+    TableView<KinderGarten> getKinderGartenTable() {
+        return gartensTable;
+    }
+
+    @Override
+    void loadData() {
+
     }
 }

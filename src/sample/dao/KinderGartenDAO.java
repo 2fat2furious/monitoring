@@ -1,5 +1,6 @@
-package sample.data;
+package sample.dao;
 
+import sample.data.JDBCConnection;
 import sample.data.KinderGarten;
 
 import java.sql.Connection;
@@ -7,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 
 public class KinderGartenDAO {
     public KinderGarten getById(String id) {
@@ -23,7 +25,7 @@ public class KinderGartenDAO {
                         rs.getString("full_title"),
                         rs.getString("address"),
                         rs.getString("phone"),
-                        rs.getString("fio_manageress")
+                        rs.getString("fio")
                 );
             }
 
@@ -45,7 +47,7 @@ public class KinderGartenDAO {
                                 rs.getString("full_title"),
                                 rs.getString("address"),
                                 rs.getString("phone"),
-                                rs.getString("fio_manageress")
+                                rs.getString("fio")
                         )
                 );
             }
@@ -64,14 +66,13 @@ public class KinderGartenDAO {
         }
     }
 
-    public void insert(String stitle, String ftitle, String addr, String phone, String fio_head) {
+    public void insert(String stitle, String ftitle, String addr, String phone) {
         try (Connection connection = JDBCConnection.getConnection()) {
-            PreparedStatement ps = connection.prepareStatement("INSERT INTO kinder_garten (short_title, full_title, address, phone, fio_manageress) VALUES (?,?,?,?,?)");
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO kinder_garten (short_title, full_title, address, phone) VALUES (?,?,?,?)");
             ps.setString(1, stitle);
             ps.setString(2, ftitle);
             ps.setString(3, addr);
             ps.setString(4, phone);
-            ps.setString(5, fio_head);
             ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -80,13 +81,13 @@ public class KinderGartenDAO {
 
     public void update(KinderGarten kinderGarten) {
         try (Connection connection = JDBCConnection.getConnection()) {
-            PreparedStatement ps = connection.prepareStatement("UPDATE kinder_garten SET short_title = ?, full_title = ?, address = ?, phone = ?, fio_manageress = ? Where id_kinder_garten = ?");
+            PreparedStatement ps = connection.prepareStatement("UPDATE kinder_garten SET short_title = ?, full_title = ?, address = ?, phone = ?, fio = ? Where id_kinder_garten = ?");
             ps.setString(1, kinderGarten.getShortTitle());
             ps.setString(2, kinderGarten.getFullTitle());
             ps.setString(3, kinderGarten.getAddress());
             ps.setString(4, kinderGarten.getPhone());
-            ps.setString(5, kinderGarten.getFioManageress());
-            ps.setLong(6, kinderGarten.getIdKindergarten());
+            ps.setString(5, kinderGarten.getFio());
+            ps.setLong(6, kinderGarten.getIdKinderGarten());
             ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();

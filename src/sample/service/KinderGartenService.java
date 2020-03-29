@@ -1,7 +1,9 @@
-package sample.data;
+package sample.service;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import sample.dao.KinderGartenDAO;
+import sample.data.KinderGarten;
 
 import java.sql.SQLException;
 
@@ -12,8 +14,8 @@ public class KinderGartenService {
         return FXCollections.observableArrayList(dao.getAll());
     }
 
-    public void add(String stitle, String ftitle, String addr, String phone, String fio_head) {
-        dao.insert(stitle, ftitle, addr, phone, fio_head);
+    public void add(String stitle, String ftitle, String addr, String phone) {
+        dao.insert(stitle, ftitle, addr, phone);
     }
 
     public void delete(String id) {

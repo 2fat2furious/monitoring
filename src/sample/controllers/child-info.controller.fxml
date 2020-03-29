@@ -1,0 +1,29 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+
+<!--<?import java.lang.*?>-->
+<!--<?import javafx.scene.control.*?>-->
+<!--<?import javafx.scene.layout.*?>-->
+
+<!--<AnchorPane prefHeight="561.0" prefWidth="1036.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.controllers.ChildInfoController">-->
+<!--  <children>-->
+<!--    <TabPane layoutX="0.0" layoutY="0.0" prefHeight="561.0" prefWidth="1036.0" tabClosingPolicy="UNAVAILABLE">-->
+<!--      <tabs>-->
+<!--        <Tab text="Общие сведения">-->
+<!--          <content>-->
+<!--            <fx:include source="child.controller.fxml" prefHeight="520.0" prefWidth="967.0" />-->
+<!--          </content>-->
+<!--        </Tab>-->
+<!--        <Tab fx:id="parentTab" text="Родители">-->
+<!--          <content>-->
+<!--            <fx:include source="parent.fxml" />-->
+<!--          </content>-->
+<!--        </Tab>-->
+<!--        <Tab fx:id="sectionTab" text="Секции">-->
+<!--          <content>-->
+<!--            <fx:include source="section.controller.fxml" />-->
+<!--          </content>-->
+<!--        </Tab>-->
+<!--      </tabs>-->
+<!--    </TabPane>-->
+<!--  </children>-->
+<!--</AnchorPane>-->
