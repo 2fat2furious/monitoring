@@ -7,7 +7,9 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableView;
 import sample.data.KinderGarten;
 
-public class KinderGartenInfoController {
+import java.util.Arrays;
+
+public class KinderGartenInfoController extends AbstractTabsContainer {
     @FXML
     KinderGartenController kinderGartenController;
     @FXML
@@ -27,7 +29,7 @@ public class KinderGartenInfoController {
     public void initialize() {
         this.kg = this.kinderGartenController.getKinderGartenTable().selectionModelProperty();
         this.initTabDisabling();
-        this.initChildren();
+        initChildren(Arrays.asList(kinderGartenController, educatorController, groupTypeController));
         loadOnTabSelected(educatorTab, educatorController);
         loadOnTabSelected(groupTypeTab, groupTypeController);
     }
@@ -36,28 +38,8 @@ public class KinderGartenInfoController {
         return kg.getValue().getSelectedItem();
     }
 
-    private void initChildren() {
-        kinderGartenController.init(this);
-        educatorController.init(this);
-        groupTypeController.init(this);
-    }
-
     private void initTabDisabling() {
-        BooleanBinding gartenIsSelected = kinderGartenController
-                .getKinderGartenTable()
-                .getSelectionModel()
-                .selectedItemProperty()
-                .isNull();
-
-        educatorTab.disableProperty().bind(gartenIsSelected);
-        groupTypeTab.disableProperty().bind(gartenIsSelected);
-    }
-
-    private void loadOnTabSelected(Tab tab, AbstractGartenInfoController c) {
-        tab.selectedProperty().addListener((o, oldV, newV) -> {
-            if (newV) {
-                c.loadData();
-            }
-        });
+        initDisabling(educatorTab, kinderGartenController.getKinderGartenTable());
+        initDisabling(groupTypeTab, kinderGartenController.getKinderGartenTable());
     }
 }

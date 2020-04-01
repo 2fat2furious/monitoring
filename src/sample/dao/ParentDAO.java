@@ -6,6 +6,7 @@ import sample.data.Parent;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ParentDAO {
     public Parent getById(String id) {
@@ -47,7 +48,7 @@ public class ParentDAO {
                                 rs.getString("position"),
                                 rs.getString("workPhone"),
                                 rs.getDate("dateOfBirth")
-                ));
+                        ));
             }
             return parents;
         } catch (SQLException e) {
@@ -93,5 +94,31 @@ public class ParentDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Parent> getAllByChildId(long id) {
+        List<Parent> parents = new ArrayList<>();
+
+        try (Connection connection = JDBCConnection.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement("SELECT pa.id_p, pa.name, pa.education, pa.placeWork, pa.position, pa.workphone, pa.dateOfBirth FROM parent pa LEFT JOIN parentchild pc ON pa.id_p = pc.id_p LEFT JOIN child ch ON pc.id_c = ch.id_c WHERE ch.id_c = ?");
+
+            ps.setLong(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while ((rs.next())) {
+                parents.add(new Parent(
+                        rs.getLong("id_p"),
+                        rs.getString("name"),
+                        rs.getString("education"),
+                        rs.getString("placeOfWork"),
+                        rs.getString("position"),
+                        rs.getString("workphone"),
+                        rs.getDate("dateOfBirth")
+                ));
+            }
+        } catch (SQLException e) {
+        }
+
+        return parents;
     }
 }

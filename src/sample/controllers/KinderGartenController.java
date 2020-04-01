@@ -16,7 +16,7 @@ import sample.service.KinderGartenService;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class KinderGartenController extends AbstractGartenInfoController {
+public class KinderGartenController extends AbstractTabController<KinderGartenInfoController, KinderGarten> {
     @FXML
     private TableView gartensTable;
     @FXML
@@ -34,16 +34,6 @@ public class KinderGartenController extends AbstractGartenInfoController {
     @FXML
     private GridPane detailsPanel;
 
-    //    @FXML
-//    private TextField shortTitle;
-//    @FXML
-//    private TextField fullTitle;
-//    @FXML
-//    private TextField address;
-//    @FXML
-//    private TextField phone;
-//    @FXML
-//    private TextField fio;
     @FXML
     private Button deleteButton;
     @FXML
@@ -54,10 +44,6 @@ public class KinderGartenController extends AbstractGartenInfoController {
     @FXML
     void initialize() throws SQLException {
         shortTitleColumn.setCellValueFactory(cell -> cell.getValue().shortTitleProperty());
-//        fullTitleLabel.setCellValueFactory(cell -> cell.getValue().fullTitleProperty());
-//        addressColumn.setCellValueFactory(cell -> cell.getValue().addressProperty());
-//        phoneColumn.setCellValueFactory(cell -> cell.getValue().phoneProperty());
-//        fioColumn.setCellValueFactory(cell -> cell.getValue().fioProperty());
         gartensTable.setItems(service.getAll());
 
         BooleanBinding modelIsSelected = gartensTable.getSelectionModel().selectedItemProperty().isNull();
@@ -74,7 +60,6 @@ public class KinderGartenController extends AbstractGartenInfoController {
                 shortTitleLabel.setText(kg.getShortTitle());
                 addressLabel.setText(kg.getAddress());
                 phoneLabel.setText(kg.getPhone());
-                // fioLabel.setText(kg.getFio());
             }
         });
 
@@ -90,7 +75,6 @@ public class KinderGartenController extends AbstractGartenInfoController {
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Добавление детского сада");
             dialogStage.initModality(Modality.WINDOW_MODAL);
-//            dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
@@ -170,7 +154,7 @@ public class KinderGartenController extends AbstractGartenInfoController {
     }
 
     @Override
-    void loadData() {
+    public void loadData() {
 
     }
 }

@@ -3,11 +3,12 @@ package sample.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import sample.data.GroupType;
+import sample.data.KinderGarten;
 import sample.service.GroupTypeService;
 
 import java.sql.SQLException;
 
-public class GroupTypeController extends AbstractGartenInfoController {
+public class GroupTypeController extends AbstractTabController<KinderGartenInfoController, KinderGarten> {
     @FXML
     private TableView groupTypesTable;
     @FXML
@@ -96,7 +97,7 @@ public class GroupTypeController extends AbstractGartenInfoController {
     }
 
     @Override
-    void loadData() {
+    public void loadData() {
         groupTypesTable.setItems(service.getGroupTypesByKinderGartenId(parent.getSelectedKinderGarten().getIdKinderGarten()));
         titleKinderGartenLabel.setText(parent.getSelectedKinderGarten().getFullTitle());
     }

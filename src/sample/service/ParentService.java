@@ -16,6 +16,10 @@ public class ParentService {
         return FXCollections.observableArrayList(dao.getAll());
     }
 
+    public ObservableList<Parent> getParentsByChildId(long id) {
+        return FXCollections.observableArrayList(dao.getAllByChildId(id));
+    }
+
     public void add(String name, String education, String placeOfWork, String position, String workPhone, Date dateOfBirth) {
         dao.insert(name, education, placeOfWork, position, workPhone, dateOfBirth);
     }

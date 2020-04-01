@@ -9,13 +9,14 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.data.Educator;
+import sample.data.KinderGarten;
 import sample.service.EducatorService;
 
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class EducatorController extends AbstractGartenInfoController {
+public class EducatorController extends AbstractTabController<KinderGartenInfoController, KinderGarten> {
     @FXML
     private TableView educatorsTable;
     @FXML
@@ -92,7 +93,7 @@ public class EducatorController extends AbstractGartenInfoController {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(EducatorController.class.getResource("educator-edit-dialog.controller.fxml"));
-            AnchorPane page = (AnchorPane) loader.load();
+            AnchorPane page = loader.load();
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Добавление воспитателя");
@@ -127,6 +128,7 @@ public class EducatorController extends AbstractGartenInfoController {
             loadData();
         }
     }
+
     @FXML
     void handleRemove() {
         int index = educatorsTable.getSelectionModel().getSelectedIndex();
@@ -177,7 +179,12 @@ public class EducatorController extends AbstractGartenInfoController {
     }
 
     @Override
-    void loadData() {
-
+    public void loadData() {
+        // TODO: ADD TITLE
+        try {
+            educatorsTable.setItems(service.getEducatorsByKGId(parent.kg.getValue().getSelectedItem().getIdKinderGarten()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
