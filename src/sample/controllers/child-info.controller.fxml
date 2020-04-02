@@ -11,17 +11,17 @@
             <tabs>
                 <Tab text="Общие сведения">
                     <content>
-                        <fx:include fx:id="childController" source="child.controller.fxml"/>
+                        <fx:include fx:id="child" source="child.controller.fxml"/>
                     </content>
                 </Tab>
                 <Tab fx:id="parentTab" text="Родители">
                     <content>
-                        <fx:include fx:id="parentController" source="parent.fxml"/>
+                        <fx:include fx:id="parent" source="parent.fxml"/>
                     </content>
                 </Tab>
                 <Tab fx:id="sectionTab" text="Секции">
                     <content>
-                        <fx:include fx:id="sectionController" source="section.controller.fxml"/>
+                        <fx:include fx:id="section" source="section.controller.fxml"/>
                     </content>
                 </Tab>
             </tabs>

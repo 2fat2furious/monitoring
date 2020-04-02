@@ -33,16 +33,16 @@ public class SectionController extends AbstractTabController<ChildInfoController
 
     @FXML
     void initialize() throws SQLException {
-        institutionNameColumn.setCellValueFactory(cell -> cell.getValue().institutionNameProperty());
-        sectionNameColumn.setCellValueFactory(cell -> cell.getValue().sectionNameProperty());
-        sectionsTable.setItems(service.getAll());
-        sectionsTable.setOnMouseClicked(e -> {
-            if (this.editing) {
-                this.editing = false;
-                institutionNameField.setText("");
-                sectionNameField.setText("");
-            }
-        });
+//        institutionNameColumn.setCellValueFactory(cell -> cell.getValue().institutionNameProperty());
+//        sectionNameColumn.setCellValueFactory(cell -> cell.getValue().sectionNameProperty());
+//        sectionsTable.setItems(service.getAll());
+//        sectionsTable.setOnMouseClicked(e -> {
+//            if (this.editing) {
+//                this.editing = false;
+//                institutionNameField.setText("");
+//                sectionNameField.setText("");
+//            }
+//        });
     }
 
     @FXML

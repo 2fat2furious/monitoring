@@ -1,8 +1,8 @@
-<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<?xml version="1.0" encoding="UTF-8"?>
 
-<!--<?import javafx.scene.control.*?>-->
-<!--<?import javafx.scene.layout.*?>-->
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<!--<AnchorPane prefHeight="524.0" prefWidth="958.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.controllers.SectionController">-->
+<AnchorPane prefHeight="524.0" prefWidth="958.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.controllers.SectionController">
 
-<!--</AnchorPane>-->
+</AnchorPane>
