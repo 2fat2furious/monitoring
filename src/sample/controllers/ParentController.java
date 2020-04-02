@@ -94,15 +94,17 @@ public class ParentController extends AbstractTabController<ChildInfoController,
 
     @FXML
     private void handleNewParent() {
-        Parent parent = new Parent();
-        boolean okClicked = showParentEditDialog(parent);
+        Parent p = new Parent();
+        boolean okClicked = showParentEditDialog(p);
         if (okClicked) {
-            service.add(parent.getName(),
-                    parent.getEducation(),
-                    parent.getPlaceOfWork(),
-                    parent.getPosition(),
-                    parent.getWorkPhone(),
-                    parent.getDateOfBirth());
+            service.add(p.getName(),
+                    p.getEducation(),
+                    p.getPlaceOfWork(),
+                    p.getPosition(),
+                    p.getWorkPhone(),
+                    p.getDateOfBirth(),
+                    parent.getSelectedChild().getId_c()
+            );
             loadData();
         }
     }

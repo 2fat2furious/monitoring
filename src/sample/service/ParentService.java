@@ -20,8 +20,12 @@ public class ParentService {
         return FXCollections.observableArrayList(dao.getAllByChildId(id));
     }
 
-    public void add(String name, String education, String placeOfWork, String position, String workPhone, Date dateOfBirth) {
-        dao.insert(name, education, placeOfWork, position, workPhone, dateOfBirth);
+    public void add(String name, String education, String placeOfWork, String position, String workPhone, Date dateOfBirth,  long childId) {
+        Long parentId = dao.insert(name, education, placeOfWork, position, workPhone, dateOfBirth);
+
+        if(parentId != null) {
+            dao.insertParentChildRelation(parentId, childId);
+        }
     }
 
     public void delete(String id) {

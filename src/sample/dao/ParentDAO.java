@@ -65,19 +65,23 @@ public class ParentDAO {
         }
     }
 
-    public void insert(String name, String education, String placeOfWork, String position, String workPhone, Date dateOfBirth) {
+    public Long insert(String name, String education, String placeOfWork, String position, String workPhone, Date dateOfBirth) {
         try (Connection connection = JDBCConnection.getConnection()) {
-            PreparedStatement ps = connection.prepareStatement("INSERT INTO parent (name, education, placeOfWork, position, workPhone, dateOfBirth) VALUES (?,?,?,?,?,?)");
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO parent (name, education, placeOfWork, position, workPhone, dateOfBirth) VALUES (?,?,?,?,?,?) RETURNING id_p");
             ps.setString(1, name);
             ps.setString(2, education);
             ps.setString(3, placeOfWork);
             ps.setString(4, position);
             ps.setString(5, workPhone);
             ps.setDate(6, dateOfBirth);
-            ps.execute();
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            rs.getLong(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return null;
     }
 
     public void update(Parent parent) {
@@ -120,5 +124,16 @@ public class ParentDAO {
         }
 
         return parents;
+    }
+
+    public void insertParentChildRelation(long parentId, long childId) {
+        try (Connection connection = JDBCConnection.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO parentChild (id_c, id_p) VALUES (?,?)");
+            ps.setLong(2, parentId);
+            ps.setLong(1, childId);
+            ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
