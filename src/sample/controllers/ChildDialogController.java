@@ -1,10 +1,7 @@
 package sample.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import sample.data.Child;
@@ -26,6 +23,8 @@ public class ChildDialogController {
     private TextField homeAddressField;
     @FXML
     private TextField healthStatusField;
+    @FXML
+    private CheckBox socialAssistanceField;
     @FXML
     private GridPane detailsPanel;
 
@@ -66,6 +65,7 @@ public class ChildDialogController {
         homePhoneField.setText(child.getHomePhone());
         homeAddressField.setText(child.getHomeAddress());
         healthStatusField.setText(child.getHealthStatus());
+        socialAssistanceField.setSelected(child.isSocialAssistance());
     }
 
     /**
@@ -87,6 +87,7 @@ public class ChildDialogController {
             child.setHomePhone(homePhoneField.getText());
             child.setHomeAddress(homeAddressField.getText());
             child.setHealthStatus(healthStatusField.getText());
+            child.setSocialAssistance(socialAssistanceField.isSelected());
 
             okClicked = true;
             dialogStage.close();
