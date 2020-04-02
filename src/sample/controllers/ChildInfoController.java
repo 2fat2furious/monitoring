@@ -22,17 +22,17 @@ public class ChildInfoController extends AbstractTabsContainer {
     @FXML
     Tab sectionTab;
 
-    ObjectProperty<TableView.TableViewSelectionModel<Child>> child;
+    ObjectProperty<TableView.TableViewSelectionModel<Child>> childProperty;
 
     @FXML
     public void initialize() {
-        this.child = this.childController.getChildTable().selectionModelProperty();
+        this.childProperty = this.childController.getChildTable().selectionModelProperty();
         this.initTabDisabling();
         initChildren(Arrays.asList(childController, parentController, sectionController));
     }
 
     public Child getSelectedChild() {
-        return child.getValue().getSelectedItem();
+        return childProperty.getValue().getSelectedItem();
     }
 
     private void initTabDisabling() {

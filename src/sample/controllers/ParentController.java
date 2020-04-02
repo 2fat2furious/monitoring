@@ -162,7 +162,7 @@ public class ParentController extends AbstractTabController<ChildInfoController,
     @Override
     public void loadData() {
         parentsTable.setItems(service.getParentsByChildId(
-                parent.child.getValue().getSelectedItem().getId_c()
+                parent.getSelectedChild().getId_c()
         ));
     }
 }
