@@ -21,6 +21,7 @@ public class Child {
     private long idKinderGarten;
     private StringProperty titleGroup = new SimpleStringProperty();
     private long id_ay;
+    private Group group;
 
     public Child(long id_c, String name, Date dateOfBirth, String placeOfBirth,
                  String homePhone, String homeAddress, String familyComposition,
@@ -33,6 +34,8 @@ public class Child {
         this.homeAddress.set(homeAddress);
         this.familyComposition.set(familyComposition);
         this.healthStatus.set(healthStatus);
+
+        this.group = buildGroup();
     }
 
     public Child() {
@@ -168,5 +171,17 @@ public class Child {
 
     public StringProperty fioProperty() {
         return name;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    private Group buildGroup() {
+        return new Group(
+                idKinderGarten,
+                id_ay,
+                titleGroup.get()
+        );
     }
 }

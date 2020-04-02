@@ -4,12 +4,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import sample.dao.GroupDAO;
 import sample.data.Child;
+import sample.data.Group;
+import sample.service.GroupService;
 
 import java.sql.Date;
 import java.time.format.DateTimeFormatter;
 
 public class ChildDialogController {
+    private GroupService service = new GroupService();
 
     @FXML
     private TextField fioField;
@@ -26,6 +30,8 @@ public class ChildDialogController {
     @FXML
     private CheckBox socialAssistanceField;
     @FXML
+    private ComboBox<Group> groupField;
+    @FXML
     private GridPane detailsPanel;
 
 
@@ -41,6 +47,8 @@ public class ChildDialogController {
      */
     @FXML
     private void initialize() {
+        groupField.setConverter(new GroupDAO.GroupConverter());
+        groupField.setItems(service.getAll());
     }
 
     /**
@@ -66,6 +74,7 @@ public class ChildDialogController {
         homeAddressField.setText(child.getHomeAddress());
         healthStatusField.setText(child.getHealthStatus());
         socialAssistanceField.setSelected(child.isSocialAssistance());
+        groupField.setValue(child.getGroup());
     }
 
     /**
@@ -88,6 +97,11 @@ public class ChildDialogController {
             child.setHomeAddress(homeAddressField.getText());
             child.setHealthStatus(healthStatusField.getText());
             child.setSocialAssistance(socialAssistanceField.isSelected());
+            Group group = groupField.getValue();
+
+            child.setTitleGroup(group.getTitle());
+            child.setId_ay(group.getAcademicYearId());
+            child.setIdKinderGarten(group.getKinderGartenId());
 
             okClicked = true;
             dialogStage.close();
