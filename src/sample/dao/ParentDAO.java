@@ -76,7 +76,7 @@ public class ParentDAO {
             ps.setDate(6, dateOfBirth);
             ResultSet rs = ps.executeQuery();
             rs.next();
-            rs.getLong(1);
+            return rs.getLong(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
