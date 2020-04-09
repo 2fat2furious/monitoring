@@ -45,7 +45,7 @@ public class ParentController extends AbstractTabController<ChildInfoController,
     @FXML
     void initialize() throws SQLException {
         fioColumn.setCellValueFactory(cell -> cell.getValue().fioProperty());
-        parentsTable.setItems(service.getAll());
+        //parentsTable.setItems(service.getAll());
 
         deleteButton.disableProperty().bind(parentsTable.getSelectionModel().selectedItemProperty().isNull());
         detailsPanel.visibleProperty().bind(parentsTable.getSelectionModel().selectedItemProperty().isNotNull());

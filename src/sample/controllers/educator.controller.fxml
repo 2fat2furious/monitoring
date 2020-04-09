@@ -12,7 +12,7 @@
   </TableView>
   <HBox layoutX="390.0" layoutY="479.0" prefHeight="31.0" prefWidth="408.0" spacing="10.0">
     <children>
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleNewEducator" prefWidth="128.0" text="Сохранить" />
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleNewEducator" prefWidth="128.0" text="Добавить" />
       <Button mnemonicParsing="false" onAction="#handleEditEducator" prefWidth="128.0" text="Редактировать" />
       <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#handleRemove" prefWidth="128.0" text="Удалить" />
     </children>

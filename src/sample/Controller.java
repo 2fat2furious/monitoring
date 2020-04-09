@@ -27,4 +27,14 @@ public class Controller {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void showAcademicYear() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("controllers/academic-year.controller.fxml"));
+        Scene scene = new Scene(loader.load());
+        Stage stage = new Stage();
+        stage.setTitle("Сведения об учебных годах");
+        stage.setScene(scene);
+        stage.show();
+    }
 }
