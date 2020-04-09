@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.controllers.AcademicYearController">
+  <TableView fx:id="academicYearsTable" layoutX="177.0" prefHeight="398.0" prefWidth="290.0" AnchorPane.topAnchor="26.0">
+    <columns>
+      <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="136.0" text="Год начала" fx:id="yearInitialColumn" />
+      <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="153.0" text="Год окончания" fx:id="yearEndColumn" />
+    </columns>
+  </TableView>
+  <HBox layoutX="123.0" layoutY="449.0" prefHeight="31.0" prefWidth="408.0" spacing="10.0">
+    <children>
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleSave" prefWidth="128.0" text="Добавить" />
+      <Button mnemonicParsing="false" onAction="#handleEdit" prefWidth="128.0" text="Редактировать" />
+      <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#handleRemove" prefWidth="128.0" text="Удалить" />
+    </children>
+  </HBox>
+</AnchorPane>
