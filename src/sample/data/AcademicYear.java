@@ -17,6 +17,8 @@ public class AcademicYear {
         this.yearEnd.set(yearEnd);
     }
 
+    public AcademicYear(){}
+
     public long getId_ay() {
         return id_ay;
     }

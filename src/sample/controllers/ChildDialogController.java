@@ -125,7 +125,7 @@ public class ChildDialogController {
         String errorMessage = "";
 
         if (fioField.getText() == null || fioField.getText().length() == 0) {
-            errorMessage += "Введите полное название детского сада!\n";
+            errorMessage += "Введите ФИО ребенка!\n";
         }
 //        if (educationField.getText() == null || educationField.getText().length() == 0) {
 //            errorMessage += "Введите короткое название детского сада!\n";

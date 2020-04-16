@@ -21,8 +21,8 @@ public class AcademicYearDAO {
             } else {
                 return new AcademicYear(
                         rs.getLong("id_ay"),
-                        rs.getInt("yearInitial"),
-                        rs.getInt("yearEnd")
+                        rs.getInt("initial_year"),
+                        rs.getInt("end_year")
                 );
             }
 
@@ -40,8 +40,8 @@ public class AcademicYearDAO {
                 academicYears.add(
                         new AcademicYear(
                                 rs.getLong("id_ay"),
-                                rs.getInt("yearInitial"),
-                                rs.getInt("yearEnd")
+                                rs.getInt("initial_year"),
+                                rs.getInt("end_year")
                         )
                 );
             }
@@ -62,7 +62,7 @@ public class AcademicYearDAO {
 
     public void insert(int yearInitial, int yearEnd) {
         try (Connection connection = JDBCConnection.getConnection()) {
-            PreparedStatement ps = connection.prepareStatement("INSERT INTO academic_year (yearInitial, yearEnd) VALUES (?,?)");
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO academic_year (initial_year, end_year) VALUES (?,?)");
             ps.setInt(1, yearInitial);
             ps.setInt(2, yearEnd);
             ps.execute();

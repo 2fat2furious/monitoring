@@ -14,8 +14,8 @@
             <Menu mnemonicParsing="false" text="Справочные данные">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#showAcademicYear" text="Академический период" />
-                <MenuItem mnemonicParsing="false" text="Сведения о видах программ развития" />
-                <MenuItem mnemonicParsing="false" text="Сведения об оценивании развития" />
+                <MenuItem mnemonicParsing="false" onAction="#showTypesOfDevelopmentProgram" text="Сведения о видах программ развития" />
+                <MenuItem mnemonicParsing="false" onAction="#showTypesResult" text="Сведения об оценивании развития" />
                 <SeparatorMenuItem mnemonicParsing="false" />
                 <MenuItem mnemonicParsing="false" onAction="#showKinderGartens" text="Сведения о детских садах" />
                 <MenuItem mnemonicParsing="false" onAction="#showParents" text="Сведения о детях" />
