@@ -37,4 +37,25 @@ public class Controller {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void showTypesOfDevelopmentProgram() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("controllers/type-of-development-program.controller.fxml"));
+        Scene scene = new Scene(loader.load());
+        Stage stage = new Stage();
+        stage.setTitle("Сведения о программах развития");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void showTypesResult() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("controllers/type-result.controller.fxml"));
+        Scene scene = new Scene(loader.load());
+        Stage stage = new Stage();
+        stage.setTitle("Сведения о типах оценивания");
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }
