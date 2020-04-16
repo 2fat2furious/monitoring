@@ -41,22 +41,13 @@ public class TypeOfDevelopmentProgramController {
         editingButton.disableProperty().bind(modelIsSelected);
         detailsPanel.visibleProperty().bind(typesOfDevelopmentProgramTable.getSelectionModel().selectedItemProperty().isNotNull());
 
-        typesOfDevelopmentProgramTable.getSelectionModel().selectedItemProperty().addListener((obs, oldV, newV) -> {
-
-            if (newV != null) {
-                TypeOfDevelopmentProgram todp = (TypeOfDevelopmentProgram) newV;
-
-                name_pColumn.setText(todp.getName_p());
-            }
-        });
-
         typesOfDevelopmentProgramTable.getSelectionModel().selectFirst();
     }
 
     public boolean showTypeOfDevelopmentProgramEditDialog(TypeOfDevelopmentProgram typeOfDevelopmentProgram) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(TypeOfDevelopmentProgramController.class.getResource("type-of-development-program.controller.fxml"));
+            loader.setLocation(TypeOfDevelopmentProgramController.class.getResource("type-of-development-program-edit-dialog.controller.fxml"));
             AnchorPane page = loader.load();
 
             Stage dialogStage = new Stage();

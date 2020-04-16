@@ -28,11 +28,6 @@ public class AcademicYearController {
     private Label yearEndLabel;
 
     @FXML
-    private TextField yearInitialField;
-    @FXML
-    private TextField yearEndField;
-
-    @FXML
     private GridPane detailsPanel;
 
     @FXML
@@ -45,7 +40,7 @@ public class AcademicYearController {
     void initialize() throws SQLException {
         yearInitialColumn.setCellValueFactory(cell -> cell.getValue().yearInitialProperty().asObject());
         yearEndColumn.setCellValueFactory(cell -> cell.getValue().yearEndProperty().asObject());
-
+        academicYearsTable.setItems(service.getAll());
 
         deleteButton.disableProperty().bind(academicYearsTable.getSelectionModel().selectedItemProperty().isNull());
         detailsPanel.visibleProperty().bind(academicYearsTable.getSelectionModel().selectedItemProperty().isNotNull());
@@ -55,8 +50,8 @@ public class AcademicYearController {
             if (newV != null) {
                 AcademicYear academicYear = (AcademicYear) newV;
 
-                yearInitialField.setText(Integer.toString(academicYear.getYearInitial()));
-                yearEndField.setText(Integer.toString(academicYear.getYearEnd()));
+                yearInitialLabel.setText(Integer.toString(academicYear.getYearInitial()));
+                yearEndLabel.setText(Integer.toString(academicYear.getYearEnd()));
             }
         });
         academicYearsTable.getSelectionModel().selectFirst();
@@ -65,7 +60,7 @@ public class AcademicYearController {
     public boolean showAcademicYearEditDialog(AcademicYear academicYear) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(AcademicYearController.class.getResource("academic-year-edit-dialog.controller.fxml"));
+            loader.setLocation(AcademicYearController.class.getResource("academic-year-edit-dialog.fxml"));
             AnchorPane page = loader.load();
 
             Stage dialogStage = new Stage();
@@ -89,12 +84,14 @@ public class AcademicYearController {
 
     @FXML
     private void handleNewAcademicYear() {
-        AcademicYear academicYear = new AcademicYear();
+        AcademicYear tempAcademicYear = new AcademicYear();
+        boolean okClicked = showAcademicYearEditDialog(tempAcademicYear);
+        if (okClicked) {
             service.add(
-                    academicYear.getYearInitial(),
-                    academicYear.getYearEnd());
+                    tempAcademicYear.getYearInitial(),
+                    tempAcademicYear.getYearEnd());
             loadData();
-
+        }
     }
 
     @FXML

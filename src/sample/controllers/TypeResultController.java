@@ -48,23 +48,13 @@ public class TypeResultController {
         editingButton.disableProperty().bind(modelIsSelected);
         detailsPanel.visibleProperty().bind(typesResultTable.getSelectionModel().selectedItemProperty().isNotNull());
 
-        typesResultTable.getSelectionModel().selectedItemProperty().addListener((obs, oldV, newV) -> {
-
-            if (newV != null) {
-                TypeResult tp = (TypeResult) newV;
-
-                nameMarkColumn.setText(tp.getNameMark());
-                descMarkColumn.setText(tp.getDescMark());
-            }
-        });
-
         typesResultTable.getSelectionModel().selectFirst();
     }
 
     public boolean showTypeResultEditDialog(TypeResult typeResult) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(TypeResultController.class.getResource("type-result.controller.fxml"));
+            loader.setLocation(TypeResultController.class.getResource("type-result-edit-dialog.controller.fxml"));
             AnchorPane page = loader.load();
 
             Stage dialogStage = new Stage();
