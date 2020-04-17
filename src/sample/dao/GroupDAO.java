@@ -1,6 +1,7 @@
 package sample.dao;
 
 import javafx.util.StringConverter;
+import sample.data.ChildGroup;
 import sample.data.Group;
 import sample.data.JDBCConnection;
 
@@ -29,6 +30,27 @@ public class GroupDAO {
         } catch (SQLException e) {
             return Collections.emptyList();
         }
+    }
+
+    public List<ChildGroup> getGroupWithChildren() {
+        List<ChildGroup> childGroups = new ArrayList<>();
+        try (Connection connection = JDBCConnection.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement("SELECT gr.titlegroup, gr.id_ay, gr.id_kinder_garten, c.id_c, c.name FROM groupkg gr LEFT JOIN child c ON gr.id_kinder_garten = c.id_kinder_garten and gr.titlegroup = c.titlegroup and gr.id_ay = c.id_ay");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                childGroups.add(new ChildGroup(
+                        rs.getLong("id_kinder_garten"),
+                        rs.getString("titlegroup"),
+                        rs.getLong("id_ay"),
+                        rs.getLong("id_c"),
+                        rs.getString("name"))
+                );
+            }
+        } catch (SQLException e) {
+            return Collections.emptyList();
+        }
+
+        return childGroups;
     }
 
     public static class GroupConverter extends StringConverter<Group> {

@@ -25,7 +25,7 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Учет работы">
               <items>
-                <MenuItem mnemonicParsing="false" text="Формирование группы" />
+                <MenuItem mnemonicParsing="false" onAction="#showGroupFormation" text="Формирование группы" />
                 <MenuItem mnemonicParsing="false" text="Прием ребенка" />
                 <MenuItem mnemonicParsing="false" text="Перевод ребенка" />
                 <MenuItem mnemonicParsing="false" text="Выпуск" />

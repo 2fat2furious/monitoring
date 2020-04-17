@@ -58,4 +58,13 @@ public class Controller {
         stage.show();
     }
 
+    public void showGroupFormation() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("controllers/group_formation/group_formation.fxml"));
+        Scene scene = new Scene(loader.load());
+        Stage stage = new Stage();
+        stage.setTitle("Формирование группы");
+        stage.setScene(scene);
+        stage.show();
+    }
 }
