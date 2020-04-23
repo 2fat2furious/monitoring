@@ -46,5 +46,5 @@ public class GroupFormationController {
 
     }
 
-    private class ChildGroupCell extends ListCell<ChildGroup>
+  //  private class ChildGroupCell extends ListCell<ChildGroup>
 }
