@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="223.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.controllers.issuance.IssuanceChildController">
+  <children>
+    <Label layoutX="50.0" layoutY="36.0" text="Выберите дошкольное учреждение:" />
+    <ComboBox layoutX="311.0" layoutY="34.0" prefWidth="250.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label layoutX="50.0" layoutY="71.0" text="Выберите группу:" />
+    <ComboBox layoutX="311.0" layoutY="69.0" prefWidth="250.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label layoutX="50.0" layoutY="106.0" text="Выберите ребенка:" />
+    <ComboBox layoutX="311.0" layoutY="104.0" prefWidth="250.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Button layoutX="252.0" layoutY="164.0" mnemonicParsing="false" text="Выпустить" />
+  </children>
+</AnchorPane>

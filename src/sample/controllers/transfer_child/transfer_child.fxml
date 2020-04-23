@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="583.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.controllers.transfer_child.TransferChildController">
+  <children>
+    <Label layoutX="50.0" layoutY="41.0" text="Выберите дошкольное учреждение:" />
+    <ComboBox layoutX="311.0" layoutY="39.0" prefWidth="215.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label layoutX="50.0" layoutY="75.0" text="Выберите группу:" />
+    <ComboBox layoutX="311.0" layoutY="72.0" prefWidth="215.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <ListView layoutX="50.0" layoutY="197.0" prefHeight="308.0" prefWidth="476.0" />
+    <Label layoutX="254.0" layoutY="170.0" text="Список детей" />
+    <Button layoutX="225.0" layoutY="527.0" mnemonicParsing="false" text="Перевести группу" />
+    <Label layoutX="50.0" layoutY="108.0" text="Выберите тип группы:" />
+    <ComboBox layoutX="312.0" layoutY="106.0" prefWidth="215.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label layoutX="50.0" layoutY="139.0" text="Введите название группы:" />
+    <TextField layoutX="312.0" layoutY="136.0" prefWidth="215.0" />
+  </children>
+</AnchorPane>
